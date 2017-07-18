@@ -1,0 +1,59 @@
+<h1>{{name}}</h1>
+<ul>
+<li>Age: {{age}}</li>
+<li>Email: {{email}}</li>
+<li>Address: {{address.street}} {{address.city}} {{address.state}}</li>
+</ul>
+<!-- Events need parenthesis (click) === ng-click -->
+<button (click) = "onClick()">Click Me</button>
+<button (click) = "toggleEdit()">Edit User</button>
+<div *ngIf = isEdit>
+    <h1>Edit User</h1>
+<form>
+<div>
+<label for = "name">Name: </label>
+<!--ngmodel now requires the type to match the model and the name param to be included  -->
+<input type = "text" [(ngModel)] = "name" name="name">
+ <br>
+<label for = "age">Age: </label>
+<input type = "number"  [(ngModel)] = "age" name="age"> 
+ <br>
+<label for = "email" >Email: </label>
+<input type = "text" [(ngModel)]="email" name="email" > 
+ <br>
+<label for = "street" >Street: </label>
+<input type = "text" [(ngModel)] = "address.street" name="street">
+<br>
+<label for = "city">City: </label>
+<input type = "text" [(ngModel)] = "address.city" name="city">
+<br>
+<label for = "state">State: </label>
+<input type = "text" [(ngModel)] = "address.state" name="state">  
+</div>
+</form>
+</div>
+
+<h1>Hobbies</h1>
+<form (submit) = "addHobby(hobby.value)">
+<div>   
+
+<label for ="hobby">Hobby:</label>
+<!--#hobby ==??? id='hobby'-->
+<input type ="text" #hobby>
+
+</div>
+</form>
+<ul>
+    <!-- *ngFor === ng-repeat -->
+    <!-- to access index you must use a variable  -->
+<li *ngFor = "let hobby of hobbies; let i = index;">{{i + 1}}: {{hobby}}
+<button (click) = "deleteHobby(hobby)">X</button>
+
+</li>
+</ul>
+
+<h1>Posts</h1>
+<div *ngFor="let post of posts">
+<h4>{{post.title}}</h4>
+<p>{{post.body}}</p>
+</div>
